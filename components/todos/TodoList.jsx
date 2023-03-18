@@ -2,14 +2,14 @@ import { HiCheck, HiOutlineTrash, HiOutlinePencil } from "react-icons/hi2";
 
 const TodoList = ({ data, onDelete }) => {
   return (
-    <div className="w-full max-w-screen-md bg-white p-2 sm:p-4 rounded-b-xl">
+    <div className="w-full max-w-screen-md bg-white p-2 pb-0 sm:p-4 sm:pb-0 rounded-b-xl">
       {data.map((todo) => {
         return (
           <div
             key={todo.id}
-            className="flex items-center justify-between border border-gray-100 mb-4 p-3 rounded-md"
+            className="flex items-center justify-between gap-x-2 border border-gray-100 mb-4 p-3 rounded-md"
           >
-            <span>{todo.title}</span>
+            <span className="overflow-auto">{todo.title}</span>
             <div className="flex gap-x-3 items-center">
               <button className="">
                 <HiCheck className="w-6 h-6 text-green-400" />
