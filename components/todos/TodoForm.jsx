@@ -48,7 +48,7 @@ const TodoForm = ({ onAdd }) => {
           name="title"
           placeholder="Todo title..."
           id="todo-title"
-          className="border px-3 py-2 rounded-md outline-none focus:ring-2 focus:ring-blue-400 w-full block transition duration-200 ease-out"
+          className="border px-3 py-2 rounded-md outline-none appearance-none focus:ring-2 focus:ring-blue-400 w-full block transition duration-200 ease-out"
           type="text"
           value={formData.title}
           onChange={changeHandler}
@@ -64,7 +64,7 @@ const TodoForm = ({ onAdd }) => {
           onChange={changeHandler}
           name="description"
           id="todo-description"
-          className="border resize-none px-3 py-2 rounded-md outline-none focus:ring-2 focus:ring-blue-400 w-full block transition duration-200 ease-out"
+          className="border resize-none px-3 py-2 rounded-md outline-none appearance-none focus:ring-2 focus:ring-blue-400 w-full block transition duration-200 ease-out"
         ></textarea>
       </div>
       <div className="flex items-center gap-x-4">
