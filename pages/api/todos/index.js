@@ -4,17 +4,21 @@ import todo from "@/server/models/todo";
 dbConnect();
 
 export default async function handler(req, res) {
-  if (req.method === "POST") {
-    const newTodo = {
-      id: new Date().getTime(),
-      title: req.body.formData.title,
-      description: req.body.formData.description,
-    };
-    todos.push(newTodo);
+  const { method, body } = req;
 
-    return res.status(200).json({ message: "Todo Added !", todos });
-  } else if (req.method === "GET") {
+  if (method === "POST") {
+    const { formData } = body;
+    await todo.create({
+      title: formData.title,
+      description: formData.description,
+    });
+    // get all todos
     const todos = await todo.find({});
+
+    return res.status(200).json({ message: "New Todo Added !", todos });
+  } else if (method === "GET") {
+    const todos = await todo.find({});
+
     return res.status(200).json({ todos });
   }
 }
