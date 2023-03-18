@@ -10,11 +10,21 @@ export default function Home() {
     axios
       .get("/api/todos")
       .then((res) => {
-        setData(res.data);
+        setData(res.data.todos);
         setIsLoading(false);
       })
       .catch((err) => alert(err));
   }, []);
+
+  // Handlers
+  const deleteTodo = async (id) => {
+    await axios
+      .delete(`/api/todos/${id}`)
+      .then((res) => {
+        setData(res.data.todos);
+      })
+      .catch((err) => alert(err));
+  };
 
   if (isLoading) return <div>Loading...</div>;
 
@@ -26,7 +36,7 @@ export default function Home() {
       <div className="container p-4 xl:max-w-screen-xl mx-auto">
         <section className="flex items-center justify-center">
           <div className="w-full max-w-screen-md bg-white p-2 md:p-4 rounded-xl">
-            {data.todos.map((todo) => {
+            {data.map((todo) => {
               return (
                 <div
                   key={todo.id}
@@ -35,9 +45,9 @@ export default function Home() {
                   <span>{todo.title}</span>
                   <div className="flex gap-x-3 items-center">
                     <button className="">
-                      <HiCheck className="w-6 h-6 stroke-green-400" />
+                      <HiCheck className="w-6 h-6 text-green-400" />
                     </button>
-                    <button className="">
+                    <button onClick={() => deleteTodo(todo.id)}>
                       <HiOutlineTrash className="w-6 h-6 stroke-red-400" />
                     </button>
                     <button>
