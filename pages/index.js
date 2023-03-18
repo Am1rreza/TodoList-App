@@ -1,16 +1,21 @@
 import axios from "axios";
+import { useEffect, useState } from "react";
 import { HiCheck, HiOutlineTrash, HiOutlinePencil } from "react-icons/hi2";
-import useSWR from "swr";
-
-const fetcher = async () => {
-  const { data } = await axios.get("/api/todos");
-  return data;
-};
 
 export default function Home() {
-  const { data, error, isLoading } = useSWR("getTodos", fetcher);
+  const [isLoading, setIsLoading] = useState(true);
+  const [data, setData] = useState(null);
 
-  if (error) return <div>Failed to load</div>;
+  useEffect(() => {
+    axios
+      .get("/api/todos")
+      .then((res) => {
+        setData(res.data);
+        setIsLoading(false);
+      })
+      .catch((err) => alert(err));
+  }, []);
+
   if (isLoading) return <div>Loading...</div>;
 
   return (
