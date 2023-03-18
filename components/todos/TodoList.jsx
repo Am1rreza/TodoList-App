@@ -2,7 +2,7 @@ import { HiCheck, HiOutlineTrash, HiOutlinePencil } from "react-icons/hi2";
 
 const TodoList = ({ data, onDelete }) => {
   return (
-    <div className="w-full max-w-screen-md bg-white p-2 pb-0 sm:p-4 sm:pb-0 rounded-b-xl">
+    <div className="w-full max-w-screen-md bg-white p-4 pb-0 sm:pb-0 rounded-xl">
       {data.map((todo) => {
         return (
           <div

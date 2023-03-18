@@ -4,7 +4,8 @@ export default function handler(req, res) {
   if (req.method === "POST") {
     const newTodo = {
       id: new Date().getTime(),
-      title: req.body.todoTitle,
+      title: req.body.formData.title,
+      description: req.body.formData.description,
     };
     todos.push(newTodo);
 

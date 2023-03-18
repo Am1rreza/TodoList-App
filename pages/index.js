@@ -27,9 +27,9 @@ export default function Home() {
       .catch((err) => alert(err));
   };
 
-  const addTodo = async (todoTitle) => {
+  const addTodo = async (formData) => {
     await axios
-      .post("/api/todos", { todoTitle })
+      .post("/api/todos", { formData })
       .then((res) => {
         setData(res.data.todos);
       })
@@ -53,13 +53,13 @@ export default function Home() {
   }
 
   return (
-    <div className="bg-gray-50 min-h-screen">
+    <div className="bg-gray-100 min-h-screen">
       <nav className=" w-full bg-white shadow-sm flex justify-center py-4 mb-6">
         <h1 className="font-bold">TodoList App using Next.js</h1>
       </nav>
       <div className="container p-4 xl:max-w-screen-xl mx-auto">
-        <section className="flex flex-col items-center justify-center">
-          <TodoForm onAdd={( value) => addTodo( value)} />
+        <section className="flex md:flex-row md:items-start md:justify-center gap-x-8 flex-col gap-y-8">
+          <TodoForm onAdd={(formData) => addTodo(formData)} />
           <TodoList data={data} onDelete={deleteTodo} />
         </section>
       </div>
