@@ -36,8 +36,6 @@ export default function Home() {
       .catch((err) => alert(err));
   };
 
-  if (isLoading) return <div>Loading...</div>;
-
   return (
     <div className="bg-gray-100 min-h-screen">
       <nav className=" w-full bg-white shadow-sm flex justify-center py-4 mb-6">
@@ -46,7 +44,7 @@ export default function Home() {
       <div className="container p-4 xl:max-w-screen-xl mx-auto">
         <section className="flex md:flex-row md:items-start md:justify-center gap-x-8 flex-col gap-y-8">
           <TodoForm onAdd={(formData) => addTodo(formData)} />
-          <TodoList data={data} onDelete={deleteTodo} />
+          <TodoList data={data} onDelete={deleteTodo} isLoading={isLoading} />
         </section>
       </div>
     </div>
