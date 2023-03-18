@@ -3,9 +3,23 @@ import { useState } from "react";
 const TodoForm = ({ onAdd }) => {
   const [value, setValue] = useState("");
 
+  // Handlers
+  const submitHandler = (e) => {
+    e.preventDefault();
+
+    if (value === "") {
+      alert("Please fill the input !");
+      return;
+    }
+
+    onAdd(value);
+
+    setValue("");
+  };
+
   return (
     <form
-      onSubmit={onAdd}
+      onSubmit={(e) => submitHandler(e)}
       className="w-full max-w-screen-md bg-white pt-4 pb-2 px-2 sm:px-4 sm:pb-0 rounded-t-md flex justify-between items-center gap-x-4"
     >
       <input
