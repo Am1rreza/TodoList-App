@@ -1,6 +1,14 @@
 import { HiCheck, HiOutlineTrash, HiOutlinePencil } from "react-icons/hi2";
 
 const TodoList = ({ data, onDelete }) => {
+  if (data.length === 0) {
+    return (
+      <section className="flex items-center justify-center">
+        <h2 className="text-2xl font-semibold">Let add some todos !</h2>
+      </section>
+    );
+  }
+
   return (
     <div className="w-full max-w-screen-md bg-white p-4 pb-0 sm:pb-0 rounded-xl">
       {data.map((todo) => {

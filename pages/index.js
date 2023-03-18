@@ -37,20 +37,6 @@ export default function Home() {
   };
 
   if (isLoading) return <div>Loading...</div>;
-  if (data.length === 0) {
-    return (
-      <div className="bg-gray-50 min-h-screen">
-        <nav className=" w-full bg-white shadow-sm flex justify-center py-4 mb-6">
-          <h1 className="font-bold">TodoList App using Next.js</h1>
-        </nav>
-        <div className="container p-4 xl:max-w-screen-xl mx-auto">
-          <section className="flex items-center justify-center">
-            <h2 className="text-2xl font-semibold">Let add some todos !</h2>
-          </section>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="bg-gray-100 min-h-screen">
