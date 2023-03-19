@@ -1,10 +1,11 @@
 import { HiCheck, HiOutlineTrash, HiOutlinePencil } from "react-icons/hi2";
+import styles from "./TodoList.module.css";
 
 const TodoList = ({ data, onDelete, isLoading }) => {
   if (isLoading)
     return (
       <section className="flex items-center justify-center">
-        <h2 className="text-2xl font-semibold">Loading...</h2>
+        <span class={styles.loader}></span>
       </section>
     );
 
