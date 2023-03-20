@@ -1,21 +1,11 @@
 import TodoForm from "@/components/todos/TodoForm";
 import TodoList from "@/components/todos/TodoList";
+import todo from "@/server/models/todo";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
-export default function Home() {
-  const [isLoading, setIsLoading] = useState(true);
-  const [data, setData] = useState(null);
-
-  useEffect(() => {
-    axios
-      .get("/api/todos")
-      .then((res) => {
-        setData(res.data.todos);
-        setIsLoading(false);
-      })
-      .catch((err) => alert(err));
-  }, []);
+export default function Home({ todos }) {
+  const [data, setData] = useState(todos);
 
   // Handlers
   const deleteTodo = async (id) => {
@@ -23,7 +13,6 @@ export default function Home() {
       .delete(`/api/todos/${id}`)
       .then((res) => {
         setData(res.data.todos);
-        setIsLoading(false);
       })
       .catch((err) => alert(err));
   };
@@ -45,9 +34,19 @@ export default function Home() {
       <div className="container p-4 xl:max-w-screen-xl mx-auto">
         <section className="flex md:flex-row md:items-start md:justify-center gap-x-8 flex-col gap-y-8">
           <TodoForm onAdd={(formData) => addTodo(formData)} />
-          <TodoList data={data} onDelete={deleteTodo} isLoading={isLoading} />
+          <TodoList data={data} onDelete={deleteTodo} />
         </section>
       </div>
     </div>
   );
+}
+
+export async function getServerSideProps(context) {
+  const todos = await todo.find({});
+
+  return {
+    props: {
+      todos: JSON.parse(JSON.stringify(todos)),
+    },
+  };
 }

@@ -2,14 +2,7 @@ import Link from "next/link";
 import { HiCheck, HiOutlineTrash, HiOutlinePencil } from "react-icons/hi2";
 import styles from "./TodoList.module.css";
 
-const TodoList = ({ data, onDelete, isLoading }) => {
-  if (isLoading)
-    return (
-      <section className="flex items-center justify-center">
-        <span className={styles.loader}></span>
-      </section>
-    );
-
+const TodoList = ({ data, onDelete }) => {
   if (data.length === 0) {
     return (
       <section className="flex items-center justify-center">
