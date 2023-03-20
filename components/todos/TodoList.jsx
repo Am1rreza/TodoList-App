@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { HiCheck, HiOutlineTrash, HiOutlinePencil } from "react-icons/hi2";
 import styles from "./TodoList.module.css";
 
@@ -25,7 +26,9 @@ const TodoList = ({ data, onDelete, isLoading }) => {
             key={todo._id}
             className="flex items-center justify-between gap-x-2 border border-gray-100 mb-4 p-3 rounded-md"
           >
-            <span className="overflow-auto">{todo.title}</span>
+            <Link href={`/todos/${todo._id}`} className="flex-1">
+              <span className="overflow-auto">{todo.title}</span>
+            </Link>
             <div className="flex gap-x-3 items-center">
               <button className="">
                 <HiCheck className="w-6 h-6 text-green-400" />
