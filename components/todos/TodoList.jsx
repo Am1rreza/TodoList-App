@@ -5,7 +5,7 @@ const TodoList = ({ data, onDelete, isLoading }) => {
   if (isLoading)
     return (
       <section className="flex items-center justify-center">
-        <span class={styles.loader}></span>
+        <span className={styles.loader}></span>
       </section>
     );
 
@@ -22,7 +22,7 @@ const TodoList = ({ data, onDelete, isLoading }) => {
       {data.map((todo) => {
         return (
           <div
-            key={todo.id}
+            key={todo._id}
             className="flex items-center justify-between gap-x-2 border border-gray-100 mb-4 p-3 rounded-md"
           >
             <span className="overflow-auto">{todo.title}</span>
@@ -30,7 +30,7 @@ const TodoList = ({ data, onDelete, isLoading }) => {
               <button className="">
                 <HiCheck className="w-6 h-6 text-green-400" />
               </button>
-              <button onClick={() => onDelete(todo.id)}>
+              <button onClick={() => onDelete(todo._id)}>
                 <HiOutlineTrash className="w-6 h-6 stroke-red-400" />
               </button>
               <button>

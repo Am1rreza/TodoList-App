@@ -23,6 +23,7 @@ export default function Home() {
       .delete(`/api/todos/${id}`)
       .then((res) => {
         setData(res.data.todos);
+        setIsLoading(false);
       })
       .catch((err) => alert(err));
   };
