@@ -19,12 +19,12 @@ const TodoList = ({ data, onDelete, isLoading }) => {
   }
 
   return (
-    <div className="w-full max-w-screen-md bg-white p-4 pb-0 sm:pb-0 rounded-xl">
+    <div className="w-full max-w-screen-md bg-white p-4 pb-0 sm:pb-0 rounded-lg shadow-sm">
       {data.map((todo) => {
         return (
           <div
             key={todo._id}
-            className="flex items-center justify-between gap-x-2 border border-gray-100 mb-4 p-3 rounded-md"
+            className="flex items-center justify-between gap-x-2 border border-gray-200 mb-4 p-3 rounded-md"
           >
             <Link href={`/todos/${todo._id}`} className="flex-1">
               <span className="overflow-auto">{todo.title}</span>
