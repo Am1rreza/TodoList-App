@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { HiCheck, HiOutlineTrash, HiOutlinePencil } from "react-icons/hi2";
-import styles from "./TodoList.module.css";
 
 const TodoList = ({ data, onDelete }) => {
   if (data.length === 0) {

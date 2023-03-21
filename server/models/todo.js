@@ -1,4 +1,7 @@
 import mongoose from "mongoose";
+import dbConnect from "../utils/dbConnect";
+
+dbConnect();
 
 const todoSchema = new mongoose.Schema({
   title: {
