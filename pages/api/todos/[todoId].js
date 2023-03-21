@@ -18,6 +18,18 @@ export default async function handler(req, res) {
     const todo = await getOneTodo(query);
 
     return res.status(200).json({ message: "Todo Loaded", todo });
+  } else if (method === "PUT") {
+    let todo = await Todo.findById(query.todoId);
+    todo.title = req.body.todo.title;
+    todo.description = req.body.todo.description;
+
+    // save todo in db
+    await todo.save();
+
+    // get all todos
+    const todos = await Todo.find({});
+
+    return res.status(200).json({ message: "Todo Updated !", todos });
   }
 }
 
