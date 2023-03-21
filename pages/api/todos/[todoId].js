@@ -22,6 +22,7 @@ export default async function handler(req, res) {
     let todo = await Todo.findById(query.todoId);
     todo.title = req.body.todo.title;
     todo.description = req.body.todo.description;
+    todo.isCompleted = req.body.todo.isCompleted;
 
     // save todo in db
     await todo.save();

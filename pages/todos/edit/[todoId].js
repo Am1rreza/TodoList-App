@@ -5,6 +5,7 @@ import { useState } from "react";
 
 const TodoEditPage = ({ todo }) => {
   const router = useRouter();
+  const [isCheck, setIsCheck] = useState(todo.isCompleted);
   const [formData, setFormData] = useState({
     title: todo.title,
     description: todo.description,
@@ -19,7 +20,9 @@ const TodoEditPage = ({ todo }) => {
     e.preventDefault();
 
     axios
-      .put(`/api/todos/${router.query.todoId}`, { todo: formData })
+      .put(`/api/todos/${router.query.todoId}`, {
+        todo: { ...formData, isCompleted: isCheck },
+      })
       .then((res) => {
         router.push("/");
       })
@@ -54,7 +57,7 @@ const TodoEditPage = ({ todo }) => {
                 onChange={changeHandler}
               />
             </div>
-            <div className="mb-8">
+            <div className="mb-4">
               <label
                 className="text-gray-600 mb-1 block"
                 htmlFor="todo-description"
@@ -69,6 +72,19 @@ const TodoEditPage = ({ todo }) => {
                 id="todo-description"
                 className="border resize-none px-3 py-2 rounded-md outline-none appearance-none focus:ring-2 focus:ring-blue-400 w-full block transition duration-200 ease-out"
               ></textarea>
+            </div>
+            <div className="mb-8">
+              <input
+                type="checkbox"
+                name="checked"
+                id="checked"
+                checked={isCheck}
+                onChange={() => setIsCheck(!isCheck)}
+                className="mr-2"
+              />
+              <label className="font-semibold" htmlFor="checked">
+                Complete Todo
+              </label>
             </div>
             <div className="flex items-center gap-x-4">
               <button
