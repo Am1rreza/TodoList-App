@@ -26,6 +26,15 @@ export default function Home({ todos }) {
       .catch((err) => alert(err));
   };
 
+  const completeHandler = async (id) => {
+    await axios
+      .put(`/api/todos/complete/${id}`)
+      .then((res) => {
+        setData(res.data.todos);
+      })
+      .catch((err) => alert(err));
+  };
+
   return (
     <div className="bg-gray-100 min-h-screen">
       <nav className=" w-full bg-white shadow-sm flex justify-center py-4 mb-6">
@@ -34,7 +43,11 @@ export default function Home({ todos }) {
       <div className="container p-4 xl:max-w-screen-xl mx-auto">
         <section className="flex md:flex-row md:items-start md:justify-center gap-x-8 flex-col gap-y-8">
           <TodoForm onAdd={(formData) => addTodo(formData)} />
-          <TodoList data={data} onDelete={deleteTodo} />
+          <TodoList
+            data={data}
+            onDelete={deleteTodo}
+            onComplete={completeHandler}
+          />
         </section>
       </div>
     </div>

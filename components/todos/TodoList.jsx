@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { HiCheck, HiOutlineTrash, HiOutlinePencil } from "react-icons/hi2";
 
-const TodoList = ({ data, onDelete }) => {
+const TodoList = ({ data, onDelete, onComplete }) => {
   if (data.length === 0) {
     return (
       <section className="flex items-center justify-center">
@@ -19,11 +19,21 @@ const TodoList = ({ data, onDelete }) => {
             className="flex items-center justify-between gap-x-2 border border-gray-200 mb-4 p-3 rounded-md"
           >
             <Link href={`/todos/${todo._id}`} className="flex-1">
-              <span className="overflow-auto">{todo.title}</span>
+              <span
+                className={`overflow-auto ${
+                  todo.isCompleted ? "line-through" : ""
+                }`}
+              >
+                {todo.title}
+              </span>
             </Link>
             <div className="flex gap-x-3 items-center">
-              <button className="">
-                <HiCheck className="w-6 h-6 text-green-400" />
+              <button onClick={() => onComplete(todo._id)}>
+                {todo.isCompleted ? (
+                  <HiCheck className="w-6 h-6 text-green-400" />
+                ) : (
+                  <span className="w-5 h-5 block border-2 border-gray-500 rounded-full"></span>
+                )}
               </button>
               <button onClick={() => onDelete(todo._id)}>
                 <HiOutlineTrash className="w-6 h-6 stroke-red-400" />
