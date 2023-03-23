@@ -1,5 +1,6 @@
 import Layout from "@/containers/Layout/Layout";
 import { getOneTodo } from "@/pages/api/todos/[todoId]";
+import dbConnect from "@/server/utils/dbConnect";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { useState } from "react";
@@ -107,6 +108,7 @@ const TodoEditPage = ({ todo }) => {
 export default TodoEditPage;
 
 export async function getServerSideProps(context) {
+  dbConnect();
   const { query } = context;
   const todo = await getOneTodo(query);
 

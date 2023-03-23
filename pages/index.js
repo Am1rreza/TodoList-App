@@ -2,6 +2,7 @@ import TodoForm from "@/components/todos/TodoForm";
 import TodoList from "@/components/todos/TodoList";
 import Layout from "@/containers/Layout/Layout";
 import todo from "@/server/models/todo";
+import dbConnect from "@/server/utils/dbConnect";
 import axios from "axios";
 import { useState } from "react";
 
@@ -51,6 +52,7 @@ export default function Home({ todos }) {
 }
 
 export async function getServerSideProps(context) {
+  dbConnect();
   const todos = await todo.find({});
 
   return {
