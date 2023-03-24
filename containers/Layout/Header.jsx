@@ -1,14 +1,17 @@
 import Link from "next/link";
 import { useState } from "react";
 import { VscMenu, VscClose } from "react-icons/vsc";
-import { signIn, signOut } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
 
 const Header = () => {
   const [isNavShow, setIsNavShow] = useState(false);
 
+  // Handlers
   const clickHandler = () => {
     setIsNavShow(!isNavShow);
   };
+
+  const { data: session, status } = useSession();
 
   return (
     <div className="w-full bg-white shadow-sm">
@@ -28,9 +31,9 @@ const Header = () => {
           )}
         </div>
         <ul
-          className={`flex flex-col gap-y-1 w-full sm:w-max text-center sm:flex sm:flex-row sm:items-center sm:gap-x-6  ${
+          className={`flex flex-col gap-y-1 w-full sm:w-max text-center sm:flex sm:flex-row sm:items-center sm:gap-x-6 transition-all ${
             isNavShow ? "mt-2" : "hidden"
-          }`}
+          } ${status === "loading" && !session ? "opacity-0" : " opacity-100"}`}
         >
           <li className="hover:bg-gray-100 transition-all duration-150 p-2 rounded cursor-pointer">
             <Link href="/">Home</Link>
@@ -41,12 +44,16 @@ const Header = () => {
           <li className="hover:bg-gray-100 transition-all duration-150 p-2 rounded cursor-pointer">
             <Link href="/profile">Profile</Link>
           </li>
-          <li className="hover:bg-gray-100 transition-all duration-150 p-2 rounded cursor-pointer">
-            <button onClick={() => signIn("github")}>Sign in</button>
-          </li>
-          <li className="hover:bg-gray-100 transition-all duration-150 p-2 rounded cursor-pointer">
-            <button onClick={() => signOut()}>Sign out</button>
-          </li>
+          {!session && status !== "loading" && (
+            <li className="hover:bg-gray-100 transition-all duration-150 p-2 rounded cursor-pointer">
+              <button onClick={() => signIn("github")}>Sign in</button>
+            </li>
+          )}
+          {session && (
+            <li className="hover:bg-gray-100 transition-all duration-150 p-2 rounded cursor-pointer">
+              <button onClick={() => signOut()}>Sign out</button>
+            </li>
+          )}
         </ul>
       </nav>
     </div>
