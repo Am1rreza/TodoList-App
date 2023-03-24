@@ -39,7 +39,7 @@ export default function Home({ todos }) {
 
   return (
     <Layout>
-      <section className="flex md:flex-row md:items-start md:justify-center gap-x-8 flex-col gap-y-8">
+      <section className="flex md:flex-row md:items-start md:justify-between gap-x-8 flex-col gap-y-8">
         <TodoForm onAdd={(formData) => addTodo(formData)} />
         <TodoList
           data={data}
