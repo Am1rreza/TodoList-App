@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { VscMenu, VscClose } from "react-icons/vsc";
+import { signIn, signOut } from "next-auth/react";
 
 const Header = () => {
   const [isNavShow, setIsNavShow] = useState(false);
@@ -41,10 +42,10 @@ const Header = () => {
             <Link href="/profile">Profile</Link>
           </li>
           <li className="hover:bg-gray-100 transition-all duration-150 p-2 rounded cursor-pointer">
-            <Link href="#">Sign in</Link>
+            <button onClick={() => signIn("github")}>Sign in</button>
           </li>
           <li className="hover:bg-gray-100 transition-all duration-150 p-2 rounded cursor-pointer">
-            <Link href="#">Sign out</Link>
+            <button onClick={() => signOut()}>Sign out</button>
           </li>
         </ul>
       </nav>
