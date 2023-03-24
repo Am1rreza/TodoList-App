@@ -31,19 +31,19 @@ const Header = () => {
             isNavShow ? "mt-2" : "hidden"
           }`}
         >
-          <li className="hover:bg-gray-100 transition-all duration-150 p-2 rounded">
+          <li className="hover:bg-gray-100 transition-all duration-150 p-2 rounded cursor-pointer">
             <Link href="/">Home</Link>
           </li>
-          <li className="hover:bg-gray-100 transition-all duration-150 p-2 rounded">
+          <li className="hover:bg-gray-100 transition-all duration-150 p-2 rounded cursor-pointer">
             <Link href="/todos">Todos</Link>
           </li>
-          <li className="hover:bg-gray-100 transition-all duration-150 p-2 rounded">
+          <li className="hover:bg-gray-100 transition-all duration-150 p-2 rounded cursor-pointer">
             <Link href="/profile">Profile</Link>
           </li>
-          <li className="hover:bg-gray-100 transition-all duration-150 p-2 rounded">
+          <li className="hover:bg-gray-100 transition-all duration-150 p-2 rounded cursor-pointer">
             <Link href="#">Sign in</Link>
           </li>
-          <li className="hover:bg-gray-100 transition-all duration-150 p-2 rounded">
+          <li className="hover:bg-gray-100 transition-all duration-150 p-2 rounded cursor-pointer">
             <Link href="#">Sign out</Link>
           </li>
         </ul>
