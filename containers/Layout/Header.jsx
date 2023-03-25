@@ -31,15 +31,15 @@ const Header = () => {
           )}
         </div>
         <ul
-          className={`flex flex-col gap-y-1 w-full sm:w-max text-center sm:flex sm:flex-row sm:items-center sm:gap-x-6 transition-all ${
-            isNavShow ? "mt-2" : "hidden"
+          className={`flex flex-col gap-y-1 w-full sm:w-max text-center sm:flex sm:flex-row sm:items-center sm:gap-x-6 transition-all mt-2 sm:mt-0 ${
+            isNavShow ? "" : "hidden"
           } ${status === "loading" && !session ? "opacity-0" : " opacity-100"}`}
         >
           <li className="hover:bg-gray-100 transition-all duration-150 p-2 rounded cursor-pointer">
             <Link href="/">Home</Link>
           </li>
           <li className="hover:bg-gray-100 transition-all duration-150 p-2 rounded cursor-pointer">
-            <Link href="/todos">Todos</Link>
+            <Link href="/protected-ssr">Protected SSR</Link>
           </li>
           <li className="hover:bg-gray-100 transition-all duration-150 p-2 rounded cursor-pointer">
             <Link href="/profile">Profile</Link>
