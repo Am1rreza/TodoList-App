@@ -9,6 +9,8 @@ const Profile = () => {
     },
   });
 
+  console.log(session);
+
   if (status === "loading") {
     return (
       <Layout>
@@ -25,7 +27,11 @@ const Profile = () => {
           alt="profile-img"
           className="w-24 h-24 sm:w-20 sm:h-20 rounded-full"
         />
-        {session.user.name}, Wellcome to your Profile Page
+        <p>
+          {" "}
+          {session.user.name}, Wellcome to your{" "}
+          <span className="font-semibold">Profile</span> Page
+        </p>
       </h1>
     </Layout>
   );
